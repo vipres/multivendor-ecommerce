@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/recursos/skydash-free-bootstrap-admin-template
 .env
 .env.backup
 .env.production
