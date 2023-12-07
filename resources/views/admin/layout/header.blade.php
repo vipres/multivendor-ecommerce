@@ -77,10 +77,17 @@
                     <i class="ti-settings text-primary"></i>
                     Settings
                     </a>
-                    <a class="dropdown-item">
-                    <i class="ti-power-off text-primary"></i>
-                    Logout
-                    </a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+
+                        <x-dropdown-link class="dropdown-item" :href="route('admin.logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                             <i class="ti-power-off text-primary"></i>
+
+                            {{ __('Logout') }}
+                        </x-dropdown-link>
+                    </form>
                 </div>
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
