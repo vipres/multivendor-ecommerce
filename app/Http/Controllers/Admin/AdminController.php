@@ -3,13 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
 
 class AdminController extends Controller
 {
    public function dashboard(){
         return view('admin.dashboard');
+    }
+
+    public function updateAdminPassword (){
+        //echo "<pre>"; print_r(Auth::guard('admin')->user()->email); die;
+            $adminDetails =Admin::where('email',Auth::guard('admin')->user()->email)->first();
+
+            return view('admin.settings.update_admin_password', compact('adminDetails'));
     }
 
     public function login (Request $request){

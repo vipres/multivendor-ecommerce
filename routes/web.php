@@ -40,6 +40,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
          //Admin Dashboard Routes
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
          Route::post('logout', [AdminController::class, 'logout'])->name('logout');
+         Route::match(['get', 'post'], 'update-admin-password', [AdminController::class, 'updateAdminPassword'])->name('admin-update-password');
      }
      );
 });
