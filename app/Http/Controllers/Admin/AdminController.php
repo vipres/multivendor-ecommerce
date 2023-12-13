@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -19,6 +20,20 @@ class AdminController extends Controller
             $adminDetails =Admin::where('email',Auth::guard('admin')->user()->email)->first();
 
             return view('admin.settings.update_admin_password', compact('adminDetails'));
+    }
+
+    public function checkAdminPassword (Request $request){
+        $data = $request->all();
+       // echo "<pre>"; print_r($data); die;
+        $adminDetails =Admin::where('email',Auth::guard('admin')->user()->email)->first();
+        $current_password = $data['current_password'];
+        if(Hash::check($current_password,$adminDetails->password)){
+            return "true";
+        }else{
+            return "false";
+        }
+
+
     }
 
     public function login (Request $request){

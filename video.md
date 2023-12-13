@@ -1,4 +1,3 @@
-https://www.youtube.com/watch?v=b4ISE_polCo&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=15
+https://www.youtube.com/watch?v=oAZKXYrkcr4&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=17
 
-
-6:54
+inicio
