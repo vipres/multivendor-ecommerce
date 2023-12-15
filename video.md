@@ -1,3 +1,4 @@
-https://www.youtube.com/watch?v=oAZKXYrkcr4&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=17
+https://www.youtube.com/watch?v=ydubcZC3Hbw&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=18
 
-inicio
+min 10:14
+

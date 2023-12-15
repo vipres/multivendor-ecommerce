@@ -32,7 +32,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Update Admin Password</h4>
+                  <h4 class="card-title">Update Admin Details</h4>
                   @if (Session::has('error_message'))
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
                       <strong>Error</strong> {{ Session::get('error_message') }}
@@ -49,7 +49,19 @@
                       </button>
                   </div>
                 @endif
-                  <form class="forms-sample" action="{{ route('admin.admin-update-password') }}" method="post">
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong>
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+                @endif
+                  <form class="forms-sample" action="{{ route('admin.admin-update-details') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                       <label>Admin Username / Email</label>
@@ -60,19 +72,20 @@
                       <input type="email" class="form-control" value="{{ $adminDetails->type }}" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="current_password">Current Password</label>
-                      <input type="password" class="form-control" id="current_password" placeholder="Enter Current Password" name="current_password" required>
-                      <span id="check_password"></span>
-                    </div>
-                    <div class="form-group">
-                      <label for="new_password">New Password</label>
-                      <input type="password" class="form-control" id="new_password" placeholder="Enter New Password" name="new_password" required>
-                    </div>
+                      <label for="admin_name">Name</label>
+                      <input type="text" class="form-control" id="admin_name" value="{{ $adminDetails->name }}" name="admin_name" required>
 
-                    <div class="form-group">
-                      <label for="confirm_password">Confirm Password</label>
-                      <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
                     </div>
+                    <div class="form-group">
+                      <label for="admin_mobile">Mobile</label>
+                      <input type="text" class="form-control" id="admin_mobile" value="{{ $adminDetails->mobile }}" name="admin_mobile" required maxlength="9" minlength="9">
+                    </div>
+                    <div class="form-group">
+                        <label for="admin_image">Admin Photo</label>
+                        <input type="file" class="form-control" id="admin_image" name="admin_image" required>
+                      </div>
+
+
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

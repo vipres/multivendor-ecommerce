@@ -43,6 +43,8 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
          Route::match(['get', 'post'], 'update-admin-password', [AdminController::class, 'updateAdminPassword'])->name('admin-update-password');
          //Check current password
          Route::post( 'check-admin-password', [AdminController::class, 'checkAdminPassword'])->name('check-admin-password');
+            //Update Admin Details
+         Route::match(['get', 'post'], 'update-admin-details', [AdminController::class, 'updateAdminDetails'])->name('admin-update-details');
      }
      );
 });
