@@ -82,8 +82,12 @@
                     </div>
                     <div class="form-group">
                         <label for="admin_image">Admin Photo</label>
-                        <input type="file" class="form-control" id="admin_image" name="admin_image" required>
-                      </div>
+                        <input type="file" class="form-control" id="admin_image" name="admin_image">
+                        @if (!empty($adminDetails->image))
+                            <input type="hidden" name="current_admin_image" value="{{ $adminDetails->image }}">
+                            <a target="_blank" href="{{ asset('admin/images/photos/'.$adminDetails->image) }}"><img src="{{ asset('admin/images/photos/'.$adminDetails->image) }}" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin-top: 10px;"></a>
+                        @endif
+                    </div>
 
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
