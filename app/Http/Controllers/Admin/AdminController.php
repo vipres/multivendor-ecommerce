@@ -60,13 +60,17 @@ class AdminController extends Controller
                     $image_tmp->move(public_path($imagePath), $imageName);
 
                     //Update Admin Details with image
-                    Admin::where('email',Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'],'mobile'=>$data['admin_mobile'],'image'=>$imageName]);
 
                 }
+            }else if(!empty($data['current_admin_image'])){
+                $imageName = $data['current_admin_image'];
+            }else{
+                $imageName = "";
+
             }
 
             //Update Admin Details witaout image
-            Admin::where('email',Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'],'mobile'=>$data['admin_mobile']]);
+            Admin::where('email',Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'],'mobile'=>$data['admin_mobile'], 'image'=>$imageName]);
             return redirect()->back()->with('success_message','Admin Details Updated Successfully');
         }
 
