@@ -12,8 +12,14 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-   public function dashboard(){
+
+    public function dashboard(){
         return view('admin.dashboard');
+    }
+
+
+    public function updateVendorDetails (){
+        return 'hola';
     }
 
     public function updateAdminDetails (Request $request){
