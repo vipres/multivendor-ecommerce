@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vendor;
 use App\Models\Admin;
+use App\Models\VendorsBusinessDetail;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -107,6 +108,8 @@ class AdminController extends Controller
             }
 
         }elseif($slug=="business"){
+            $vendorDetails = VendorsBusinessDetail::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->first();
+
 
         }elseif($slug=="bank"){
 
