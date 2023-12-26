@@ -1,4 +1,5 @@
-https://www.youtube.com/watch?v=bylpcdvBoZg&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=24
+https://www.youtube.com/watch?v=-ZVzg8vwUjk&list=PLLUtELdNs2ZYTlQ97V1Tl8mirS3qXHNFZ&index=25
 
-min00
+
+min 07:30
 

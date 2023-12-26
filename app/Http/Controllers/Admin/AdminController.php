@@ -20,7 +20,6 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-
     public function updateVendorDetails (Request $request, $slug){
 
         $vendorDetails = Vendor::where('vendors.email', Auth::guard('admin')->user()->email)
@@ -256,8 +255,6 @@ class AdminController extends Controller
 
 
             }
-
-
         }
         return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
 
@@ -357,8 +354,6 @@ class AdminController extends Controller
         }else{
             return "false";
         }
-
-
     }
 
     public function login (Request $request){
