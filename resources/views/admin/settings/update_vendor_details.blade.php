@@ -6,7 +6,7 @@
             <div class="col-md-12 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Update Vendor Details</h3>
+                        <h3 class="font-weight-bold">Settings</h3>
                         {{-- <h6 class="font-weight-normal mb-0">Update Admin Password </h6> --}}
                     </div>
                     <div class="col-12 col-xl-4">
@@ -70,39 +70,39 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="shop_name">Name</label>
-                      <input type="text" class="form-control" id="shop_name" value="{{ $vendorDetails->name }}" name="shop_name" required>
+                      <label for="vendor_name">Name</label>
+                      <input type="text" class="form-control" id="vendor_name" value="{{ $vendorDetails->name }}" name="vendor_name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="shop_address">Address</label>
-                        <input type="text" class="form-control" id="shop_address" value="{{ $vendorDetails->address }}" name="shop_address" required>
+                        <label for="vendor_address">Address</label>
+                        <input type="text" class="form-control" id="vendor_address" value="{{ $vendorDetails->address }}" name="vendor_address" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_city">City</label>
-                        <input type="text" class="form-control" id="shop_city" value="{{ $vendorDetails->city }}" name="shop_city" required>
+                        <label for="vendor_city">City</label>
+                        <input type="text" class="form-control" id="vendor_city" value="{{ $vendorDetails->city }}" name="vendor_city" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_state">State</label>
-                        <input type="text" class="form-control" id="shop_state" value="{{ $vendorDetails->state }}" name="shop_state" required>
+                        <label for="vendor_state">State</label>
+                        <input type="text" class="form-control" id="vendor_state" value="{{ $vendorDetails->state }}" name="vendor_state" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_country">Country</label>
-                        <input type="text" class="form-control" id="shop_country" value="{{ $vendorDetails->country }}" name="shop_country" required>
+                        <label for="vendor_country">Country</label>
+                        <input type="text" class="form-control" id="vendor_country" value="{{ $vendorDetails->country }}" name="vendor_country" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_pincode">Pincode</label>
-                        <input type="text" class="form-control" id="shop_pincode" value="{{ $vendorDetails->pincode }}" name="shop_pincode" required>
+                        <label for="vendor_pincode">Pincode</label>
+                        <input type="text" class="form-control" id="vendor_pincode" value="{{ $vendorDetails->pincode }}" name="vendor_pincode" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_mobile">Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required maxlength="9" minlength="9">
+                        <label for="vendor_mobile">Mobile</label>
+                        <input type="text" class="form-control" id="vendor_mobile" value="{{ $vendorDetails->mobile }}" name="vendor_mobile" required maxlength="9" minlength="9">
                       </div>
                     <div class="form-group">
                         <label for="shop_image">Photo</label>
-                        <input type="file" class="form-control" id="shop_image" name="shop_image">
+                        <input type="file" class="form-control" id="vendor_image" name="vendor_image">
                         @if (!empty($vendorDetails->image))
-                            <input type="hidden" name="current_shop_image" value="{{ $vendorDetails->image }}">
+                            <input type="hidden" name="current_vendor_image" value="{{ $vendorDetails->image }}">
                             <a target="_blank" href="{{ asset('admin/images/photos/'.$vendorDetails->image) }}"><img src="{{ asset('admin/images/photos/'.$vendorDetails->image) }}" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin-top: 10px;"></a>
                         @endif
                     </div>
@@ -236,7 +236,77 @@
 
           </div>
         @elseif($slug == "bank")
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Business Information</h4>
+                  @if (Session::has('error_message'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Error</strong> {{ Session::get('error_message') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                @endif
+                @if (Session::has('success_message'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>OK</strong> {{ Session::get('success_message') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong>
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+                @endif
+                  <form class="forms-sample" action="{{route('admin.vendor-update-details', ['slug' => 'bank']) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label>Vendor Username / Email</label>
+                        <input type="text" class="form-control" value="{{ $vendorDetails->email }}" readonly>
+                      </div>
 
+                    <div class="form-group">
+                      <label for="account_holder_name">Account Holder Name</label>
+                      <input type="text" class="form-control" id="account_holder_name" value="{{ $vendorDetails->account_holder_name }}" name="account_holder_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_name">Bank Name</label>
+                        <input type="text" class="form-control" id="bank_name" value="{{ $vendorDetails->bank_name }}" name="bank_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="account_number">Account Number</label>
+                        <input type="text" class="form-control" id="account_number" value="{{ $vendorDetails->account_number }}" name="account_number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_ifsc_code">Ifsc Code</label>
+                        <input type="text" class="form-control" id="bank_ifsc_code" value="{{ $vendorDetails->bank_ifsc_code }}" name="bank_ifsc_code" required>
+                    </div>
+
+
+
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
         @endif
         </div>
     <!-- content-wrapper ends -->

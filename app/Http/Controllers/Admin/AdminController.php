@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Vendor;
 use App\Models\Admin;
 use App\Models\VendorsBusinessDetail;
+use App\Models\VendorsBankDetail;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -26,10 +27,7 @@ class AdminController extends Controller
         ->join('admins', 'admins.email', '=', 'vendors.email')
         ->select('vendors.*', 'admins.image')
         ->first();
-
         //dd($vendorDetails);
-
-
 
         if($slug=="personal"){
             if($request->isMethod('post')){
@@ -217,6 +215,48 @@ class AdminController extends Controller
             }
 
         }elseif($slug=="bank"){
+
+            $vendorDetails = VendorsBankDetail::where('vendors_bank_details.vendor_id', Auth::guard('admin')->user()->vendor_id)
+            ->join('admins', 'admins.vendor_id', '=', 'vendors_bank_details.vendor_id')
+            ->select('vendors_bank_details.*', 'admins.email')
+            ->first();
+            //dd($vendorDetails);
+            if($request->isMethod('post')){
+                $data = $request->all();
+                //echo "<pre>"; print_r($data); die;
+
+                $rules = [
+                    'account_holder_name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'bank_name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'account_number' => ['required', 'numeric'],
+                    'bank_ifsc_code' => ['required'],
+                ];
+                $customMessages = [
+                    'account_holder_name.required' => 'Name is required',
+                    'account_holder_name.regex' => 'Valid Name is required',
+                    'bank_name.required' => 'City is required',
+                    'bank_name.regex' => 'Valid City name is required',
+                    'account_number.required' => 'Mobile is required',
+                    'account_number.numeric' => 'Valid ccc is required',
+                    'bank_ifsc_code.required' => 'Valid Ifsc code is required',
+                ];
+
+                $this->validate($request, $rules, $customMessages);
+
+                //Update in Vendor Bank Details Table
+                VendorsBankDetail::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->update(
+                    [
+                    'account_holder_name'=>$data['account_holder_name'],
+                    'bank_name'=>$data['bank_name'],
+                    'account_number'=>$data['account_number'],
+                    'bank_ifsc_code'=>$data['bank_ifsc_code'],
+                ]);
+
+                return redirect()->back()->with('success_message','Vendor Bank Details Updated Successfully');
+
+
+            }
+
 
         }
         return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
