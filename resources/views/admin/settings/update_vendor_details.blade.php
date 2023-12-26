@@ -153,71 +153,78 @@
                   <form class="forms-sample" action="{{route('admin.vendor-update-details', ['slug' => 'business']) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                      <label>Vendor Username / Email</label>
-                      <input type="text" class="form-control" value="{{ $vendorDetails->email }}" readonly>
-                    </div>
+                        <label>Vendor Username / Email</label>
+                        <input type="text" class="form-control" value="{{ $vendorDetails->shop_email }}" readonly>
+                      </div>
 
                     <div class="form-group">
                       <label for="shop_name">Shop Name</label>
-                      <input type="text" class="form-control" id="shop_name" value="{{ $vendorDetails->name }}" name="shop_name" required>
+                      <input type="text" class="form-control" id="shop_name" value="{{ $vendorDetails->shop_name }}" name="shop_name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="shop_address">Shop Address</label>
-                        <input type="text" class="form-control" id="shop_address" value="{{ $vendorDetails->address }}" name="shop_address" required>
+                        <input type="text" class="form-control" id="shop_address" value="{{ $vendorDetails->shop_address }}" name="shop_address" required>
                     </div>
                     <div class="form-group">
                         <label for="shop_city">Shop City</label>
-                        <input type="text" class="form-control" id="shop_city" value="{{ $vendorDetails->city }}" name="shop_city" required>
+                        <input type="text" class="form-control" id="shop_city" value="{{ $vendorDetails->shop_city }}" name="shop_city" required>
                     </div>
                     <div class="form-group">
                         <label for="shop_state">Shop State</label>
-                        <input type="text" class="form-control" id="shop_state" value="{{ $vendorDetails->state }}" name="shop_state" required>
+                        <input type="text" class="form-control" id="shop_state" value="{{ $vendorDetails->shop_state }}" name="shop_state" required>
                     </div>
                     <div class="form-group">
                         <label for="shop_country">Shop Country</label>
-                        <input type="text" class="form-control" id="shop_country" value="{{ $vendorDetails->country }}" name="shop_country" required>
+                        <input type="text" class="form-control" id="shop_country" value="{{ $vendorDetails->shop_country }}" name="shop_country" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_pincode">Shop Pincode</label>
-                        <input type="text" class="form-control" id="shop_pincode" value="{{ $vendorDetails->pincode }}" name="shop_pincode" required>
+                        <label for="shop_pincode">Pincode</label>
+                        <input type="text" class="form-control" id="shop_pincode" value="{{ $vendorDetails->shop_pincode }}" name="shop_pincode" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required minlength="9" maxlength="9">
+                        <label for="shop_mobile">Mobile</label>
+                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->shop_mobile }}" name="shop_mobile" required minlength="9" maxlength="9">
                     </div>
                     <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
+                        <label for="shop_website">Website</label>
+                        <input type="text" class="form-control" id="shop_website" value="{{ $vendorDetails->shop_website }}" name="shop_website" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
+                        <label for="business_license_number">Business License Number</label>
+                        <input type="text" class="form-control" id="business_license_number" value="{{ $vendorDetails->business_license_number }}" name="business_license_number" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
+                        <label for="gst_number">GST Number</label>
+                        <input type="text" class="form-control" id="gst_number" value="{{ $vendorDetails->gst_number }}" name="gst_number" required>
                     </div>
                     <div class="form-group">
-                        <label for="shop_image">Photo</label>
-                        <input type="file" class="form-control" id="shop_image" name="shop_image">
-                        @if (!empty($vendorDetails->image))
-                            <input type="hidden" name="current_shop_image" value="{{ $vendorDetails->image }}">
-                            <a target="_blank" href="{{ asset('admin/images/photos/'.$vendorDetails->image) }}"><img src="{{ asset('admin/images/photos/'.$vendorDetails->image) }}" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin-top: 10px;"></a>
+                        <label for="pan_number">Pan Number</label>
+                        <input type="text" class="form-control" id="pan_number" value="{{ $vendorDetails->pan_number }}" name="pan_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address_proof">Address Proof</label>
+                        <select name="address_proof" id="address_proof" class="form-control">
+                            <option value="Passport" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "Passport")
+                                selected="" @endif>Passport</option>
+                            <option value="Voting Card" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "Voting Card")   selected="" @endif>Voting Card</option>
+                            <option value="Ration Card" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "Ration Card")   selected="" @endif>Ration Card</option>
+                            <option value="Aadhar Card" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "Aadhar Card")   selected="" @endif>Aadhar Card</option>
+                            <option value="Driving License" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "Driving License")   selected="" @endif>Driving License</option>
+                            <option value="DNI" @if (!empty($vendorDetails->address_proof) && $vendorDetails->address_proof == "DNI")   selected="" @endif>DNI</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address_proof_image">Address Proof Image</label>
+                        <input type="file" class="form-control" id="address_proof_image" name="address_proof_image">
+                        @if (!empty($vendorDetails->address_proof_image))
+                            <input type="hidden" name="current_address_proof_image" value="{{ $vendorDetails->address_proof_image }}">
+                            <a target="_blank" href="{{ asset('admin/images/proofs/'.$vendorDetails->address_proof_image) }}"><img src="{{ asset('admin/images/proofs/'.$vendorDetails->address_proof_image) }}" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin-top: 10px;"></a>
                         @endif
                     </div>
-                    <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shop_mobile">Shop Mobile</label>
-                        <input type="text" class="form-control" id="shop_mobile" value="{{ $vendorDetails->mobile }}" name="shop_mobile" required>
-                    </div>
+
+
 
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

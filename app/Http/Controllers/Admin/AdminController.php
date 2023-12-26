@@ -110,6 +110,111 @@ class AdminController extends Controller
         }elseif($slug=="business"){
             $vendorDetails = VendorsBusinessDetail::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->first();
 
+            if($request->isMethod('post')){
+                $data = $request->all();
+                //echo "<pre>"; print_r($data); die;
+
+                $rules = [
+                    'shop_name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'shop_city' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'shop_mobile' => ['required', 'numeric', 'digits:9'],
+                    'shop_image' => ['image'],
+                    'shop_address' => ['required', 'max:255'],
+                    'shop_state' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'shop_country' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+                    'shop_pincode' => ['required', 'numeric'],
+                    'address_proof' => ['required'],
+                    'address_proof_image'=>['image'],
+                    'business_license_number'=>['required'],
+                    'gst_number' => ['required'],
+                    'pan_number' => ['required'],
+
+                ];
+                $customMessages = [
+                    'shop_name.required' => 'Name is required',
+                    'shop_name.regex' => 'Valid Name is required',
+                    'shop_city.required' => 'City is required',
+                    'shop_city.regex' => 'Valid City name is required',
+                    'shop_mobile.required' => 'Mobile is required',
+                    'shop_mobile.numeric' => 'Valid Mobile is required',
+                    'shop_mobile.digits' => 'Maximum 9 digits are allowed',
+                    'shop_image.image' => 'Valid Image is required',
+                    'shop_address.required' => 'Address is required',
+                    'shop_address.max' => 'Valid Address is required',
+                    'shop_state.required' => 'State is required',
+                    'shop_state.regex' => 'Valid State name is required',
+                    'shop_state.max' => 'Valid State name is required',
+                    'shop_country.required' => 'Country is required',
+                    'shop_country.regex' => 'Valid Country name is required',
+                    'shop_country.max' => 'Valid Country name is required',
+                    'shop_pincode.required' => 'Pincode is required',
+                    'shop_pincode.numeric' => 'Valid Pincode is required',
+                    'shop_pincode.digits' => 'Maximum 6 digits are allowed',
+                    'address_proof.required' => 'Address Proof is required',
+                    'address_proof_image.image' => 'Valid Address Proof is required',
+                    'business_license_number.required' => 'Business License Number is required',
+                    'gst_number.required' => 'GST Number is required',
+                    'pan_number.required' => 'PAN Number is required',
+                ];
+
+                $this->validate($request, $rules, $customMessages);
+
+                //Upload Image
+                if($request->hasFile('address_proof_image')){
+                    $image_tmp = $request->file('address_proof_image');
+
+                    if($image_tmp->isValid()){
+
+                        //Get Image Extension
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        //Generate New Image Name
+                        $imageName = rand(111,99999).'.'.$extension;
+                        $imagePath = 'admin/images/proofs/';
+                      //Upload the Image
+                        if((!empty( $vendorDetails->address_proof_image )) && file_exists(public_path('admin/images/proofs/'.$vendorDetails->address_proof_image)))
+                        {
+
+                           $oldimagepath = public_path('admin/images/proofs/'.$vendorDetails->address_proof_image);
+
+                           unlink($oldimagepath);
+                        }
+
+                        $image_tmp->move(public_path($imagePath), $imageName);
+
+                        //Update Vendor Details with image
+
+                    }
+                }else if(!empty($data['current_address_proof_image'])){
+                    $imageName = $data['current_address_proof_image'];
+                }else{
+                    $imageName = "";
+
+                }
+
+
+                //Update in Vendor Bussiness Details Table
+                VendorsBusinessDetail::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->update(
+                    [
+                    'shop_name'=>$data['shop_name'],
+                    'shop_address'=>$data['shop_address'],
+                    'shop_city'=>$data['shop_city'],
+                    'shop_state'=>$data['shop_state'],
+                    'shop_country'=>$data['shop_country'],
+                    'shop_pincode'=>$data['shop_pincode'],
+                    'shop_mobile'=>$data['shop_mobile'],
+                    'shop_website'=>$data['shop_website'],
+                    'address_proof'=>$data['address_proof'],
+                    'address_proof_image'=>$imageName,
+                    'business_license_number'=>$data['business_license_number'],
+                    'gst_number'=>$data['gst_number'],
+                    'pan_number'=>$data['pan_number'],
+
+                ]);
+
+
+
+                return redirect()->back()->with('success_message','Vendor Businnes Details Updated Successfully');
+            }
 
         }elseif($slug=="bank"){
 

@@ -15,6 +15,17 @@ class AdminsTableSeeder extends Seeder
     {
          $adminRecords = [
             [
+                'id' => 1,
+                'name' => 'Manolo',
+                'type' => 'super admin',
+                'vendor_id' => 1,
+                'mobile' => '666999888',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('password'),
+                'image' => '',
+                'status' => 1,
+            ],
+            [
                 'id' => 2,
                 'name' => 'John',
                 'type' => 'vendor',
@@ -23,7 +34,7 @@ class AdminsTableSeeder extends Seeder
                 'email' => 'john@admin.com',
                 'password' => bcrypt('password'),
                 'image' => '',
-                'status' => 0,
+                'status' => 1,
             ],
 
 
