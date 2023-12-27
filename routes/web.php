@@ -48,9 +48,9 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
             //Update Vendor details
         Route::match(['get', 'post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails'])->name('vendor-update-details');
         //View Admins / Sub Admins / Vendors
-
         Route::get('admins/{type?}', [AdminController::class, 'admins'])->name('admins');
-
+        //View Vendo Details
+        Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDetails'])->name('viewVendorDetails');
         }
 
 

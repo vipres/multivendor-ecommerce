@@ -28,4 +28,16 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function vendorPersonal(){
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
+
+    public function vendorBussiness(){
+        return $this->belongsTo(VendorsBusinessDetail::class, 'vendor_id');
+    }
+
+    public function vendorBank(){
+        return $this->belongsTo(VendorsBankDetail::class, 'vendor_id');
+    }
 }

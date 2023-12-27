@@ -62,13 +62,16 @@
                       </td>
                       <td>
                         @if($admin->status == 1)
-                            Active
+                            <i style="font-size: 2em; color: green;" class="mdi mdi-bookmark-check"></i>
                         @else
-                        Inactive
+                            <i style="font-size: 2em; color: red;" class="mdi mdi-bookmark-outline"></i>
                         @endif
                       </td>
                       <td>
-                        Actions
+                        @if ($admin->type == "vendor")
+                        <a href="{{ route('admin.viewVendorDetails', ['id' => $admin->id]) }}"><i style="font-size: 2em; color: blue;" class="mdi mdi-file-document"></i></a>
+                        @endif
+
                       </td>
                     </tr>
                     @endforeach

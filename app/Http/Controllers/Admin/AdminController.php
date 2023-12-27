@@ -398,6 +398,13 @@ class AdminController extends Controller
         return view('admin.admins.admins')->with(compact('admins', 'title'));
     }
 
+    public function viewVendorDetails ($id){
+        $vendorDetails = Admin::with('vendorPersonal', 'vendorBussiness', 'vendorBank')->where('id', $id)->first();
+        //$vendorDetails = json_decode(json_encode($vendorDetails), true);
+        //dd($vendorDetails);
+        return view('admin.admins.view_vendor_details', compact('vendorDetails'));
+    }
+
     public function logout (Request $request){
 
         Auth::guard('admin')->logout();
