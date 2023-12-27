@@ -17,7 +17,7 @@ class AdminsTableSeeder extends Seeder
             [
 
                 'name' => 'Manolo',
-                'type' => 'superadmin',
+                'type' => 'admin',
                 'vendor_id' => 1,
                 'mobile' => '666999888',
                 'email' => 'admin@admin.com',
