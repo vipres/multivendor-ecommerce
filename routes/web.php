@@ -51,6 +51,8 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
         Route::get('admins/{type?}', [AdminController::class, 'admins'])->name('admins');
         //View Vendo Details
         Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDetails'])->name('viewVendorDetails');
+        //Update Admin Status
+        Route::post('update-admin-status', [AdminController::class, 'updateAdminStatus'])->name('updateAdminStatus');
         }
 
 

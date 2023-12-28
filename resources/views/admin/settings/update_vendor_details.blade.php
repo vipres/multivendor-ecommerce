@@ -240,7 +240,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Update Business Information</h4>
+                  <h4 class="card-title">Update Bank Information</h4>
                   @if (Session::has('error_message'))
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
                       <strong>Error</strong> {{ Session::get('error_message') }}
