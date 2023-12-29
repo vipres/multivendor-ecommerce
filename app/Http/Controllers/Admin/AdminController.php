@@ -11,12 +11,13 @@ use App\Models\Admin;
 use App\Models\VendorsBusinessDetail;
 use App\Models\VendorsBankDetail;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
 
     public function dashboard(){
+
         return view('admin.dashboard');
     }
 
@@ -261,6 +262,7 @@ class AdminController extends Controller
     }
 
     public function updateAdminDetails (Request $request){
+
         $adminDetails = Admin::where('email',Auth::guard('admin')->user()->email)->first();
         if($request->isMethod('post')){
             $data = $request->all();
@@ -323,6 +325,7 @@ class AdminController extends Controller
 
     public function updateAdminPassword(Request $request)
     {
+
         if ($request->isMethod('post')) {
             $data = $request->all();
             //echo "<pre>"; print_r($data); die;

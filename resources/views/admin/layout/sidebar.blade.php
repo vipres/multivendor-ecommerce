@@ -8,12 +8,12 @@
         </li>
         @if (Auth::guard('admin')->user()->type == "vendor")
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-vendors" aria-expanded="false" aria-controls="ui-vendors">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Vendor Details</span>
                 <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-vendors">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{route('admin.vendor-update-details', ['slug' => 'personal'])}}">Personal Details</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{route('admin.vendor-update-details', ['slug' => 'business'])}}">Business Details</a></li>
@@ -24,12 +24,12 @@
             </li>
         @else
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Settings</span>
             <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-settings">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('admin.admin-update-password')}}">Admin Password</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('admin.admin-update-details')}}">Admin Details</a></li>
@@ -38,12 +38,12 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-admins" aria-expanded="false" aria-controls="ui-admins">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Admin Management</span>
             <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-admins">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.admins', ['type'=>'admin']) }}">Admins</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('admin.admins', ['type'=>'subadmin'])}}">Subadmins</a></li>
@@ -54,12 +54,12 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Users Management</span>
             <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-users">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{url('admin/users')}}">Users</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{url('admin/subscribers')}}">Subscribers</a></li>
@@ -68,7 +68,7 @@
             </div>
         </li>
         @endif
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
             <i class="icon-columns menu-icon"></i>
             <span class="menu-title">Form elements</span>
@@ -147,6 +147,6 @@
             <i class="icon-paper menu-icon"></i>
             <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
