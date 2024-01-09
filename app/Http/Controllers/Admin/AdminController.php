@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vendor;
 use App\Models\Admin;
+use App\Models\Country;
 use App\Models\VendorsBusinessDetail;
 use App\Models\VendorsBankDetail;
 use Illuminate\Support\Facades\Hash;
@@ -257,7 +258,8 @@ class AdminController extends Controller
 
             }
         }
-        return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
+        $countries = Country::where('status', 1)->get();
+        return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails', 'countries'));
 
     }
 

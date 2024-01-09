@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route("admin.dashboard") }}">
+            <a style="{{ request()->routeIs('admin.dashboard') ? 'background:#4B49AC !important; color:#fff !important':'' }}" class="nav-link" href="{{ route("admin.dashboard") }}">
             <i class="icon-grid menu-icon"></i>
             <span class="menu-title">Dashboard</span>
             </a>
@@ -24,15 +24,21 @@
             </li>
         @else
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
+            <a style="{{ request()->routeIs(['admin.admin-update-password', 'admin.admin-update-details']) ? 'background:#4B49AC !important; color:#fff !important':'' }}" class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Settings</span>
             <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-settings">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.admin-update-password')}}">Admin Password</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.admin-update-details')}}">Admin Details</a></li>
+                <ul class="nav flex-column sub-menu" style="background: #fff !important">
+                    <li class="nav-item">
+                        <a style="{{ request()->routeIs('admin.admin-update-password') ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}" class="nav-link" href="{{route('admin.admin-update-password')}}">
+                            Admin Password</a>
+                        </li>
+                    <li class="nav-item">
+                        <a style="{{ request()->routeIs('admin.admin-update-password') ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}" class="nav-link" href="{{route('admin.admin-update-details')}}">
+                            Admin Details</a>
+                        </li>
 
                 </ul>
             </div>
@@ -45,10 +51,10 @@
             </a>
             <div class="collapse" id="ui-admins">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.admins', ['type'=>'admin']) }}">Admins</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.admins', ['type'=>'subadmin'])}}">Subadmins</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.admins', ['type'=>'vendor'])}}">Vendors</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('admin.admins')}}">All</a></li>
+                    <li class="nav-item"> <a style="{{ request()->routeIs('admin.admins', ['type'=>'admin']) ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}" class="nav-link" href="{{ route('admin.admins', ['type'=>'admin']) }}">Admins</a></li>
+                    <li class="nav-item"> <a style="{{ request()->routeIs('admin.admins', ['type'=>'subadmin']) ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}"class="nav-link" href="{{route('admin.admins', ['type'=>'subadmin'])}}">Subadmins</a></li>
+                    <li class="nav-item"> <a style="{{ request()->routeIs('admin.admins', ['type'=>'vendor']) ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}" class="nav-link" href="{{route('admin.admins', ['type'=>'vendor'])}}">Vendors</a></li>
+                    <li class="nav-item"> <a style="{{ request()->routeIs('admin.admins') ? 'background:#4B49AC !important; color:#fff !important':'background:#fff !important; color:#4B49AC !important' }}" class="nav-link" href="{{route('admin.admins')}}">All</a></li>
 
                 </ul>
             </div>

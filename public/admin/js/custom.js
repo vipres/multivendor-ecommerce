@@ -1,8 +1,8 @@
 //const { data } = require("autoprefixer");
 
 $(document).ready(function() {
-    //$(".nav-item").removeClass("active");
-    //$(".nav-link").removeClass("active");
+    $(".nav-item").removeClass("active");
+    $(".nav-link").removeClass("active");
     //Check admin password is correct or not
     $("#current_password").keyup(function() {
 
